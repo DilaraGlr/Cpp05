@@ -5,7 +5,7 @@
 #include <string>
 #include <exception> 
 
-class Bureaucrat; // Pré-déclaration de Bureaucrat
+class Bureaucrat;
 
 class Form
 {
@@ -32,7 +32,6 @@ class Form
 
         // Méthodes pour signer et exécuter le formulaire
         void beSigned(Bureaucrat const & src);
-        void execute(Bureaucrat const & executor) const;
 
         // Classes d'exception internes
         class GradeTooHighException : public std::exception

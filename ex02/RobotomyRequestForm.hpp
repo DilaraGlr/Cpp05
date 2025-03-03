@@ -4,12 +4,15 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+# include <ctime>
+# include <cstdlib>
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
 {
     private:
         std::string target;
+        void exec(void) const;
 
     public:
         RobotomyRequestForm(std::string const & target);
@@ -18,7 +21,6 @@ class RobotomyRequestForm : public AForm
 
         RobotomyRequestForm & operator=(RobotomyRequestForm const & src);
 
-        void execute(Bureaucrat const & executor) const;
 
         std::string getTarget() const;
         

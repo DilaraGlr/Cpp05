@@ -8,7 +8,7 @@ int main()
         std::cout << bob << std::endl;
         bob.incrementGrade();
         std::cout << bob << std::endl;
-        bob.incrementGrade(); // Devrait lancer une exception
+        bob.incrementGrade();
     }
     catch (std::exception &e)
     {

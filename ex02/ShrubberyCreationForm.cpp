@@ -21,10 +21,8 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 }
 
 // Implémentation de execute()
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::exec(void) const
 {
-    AForm::execute(executor); // Vérifie que le formulaire est signé et que le grade est suffisant
-
     std::ofstream file((target + "_shrubbery").c_str());
     if (!file)
         throw FileCreationException();

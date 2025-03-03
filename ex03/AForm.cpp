@@ -21,7 +21,7 @@ AForm & AForm::operator=(AForm const & src)
 {
     if (this != &src)
     {
-        signedStatus = src.signedStatus; // on ne modifie pas `name` car c'est const
+        signedStatus = src.signedStatus; 
     }
     return *this;
 }
@@ -55,10 +55,12 @@ void AForm::beSigned(Bureaucrat const & src)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    if (!signedStatus)
-        throw AForm::FormNotSignedException();
-    if (executor.getGrade() > gradeToExec)
-        throw AForm::GradeTooLowToExecException();
+   if(executor.getGrade() > this->gradeToSign)
+		throw Bureaucrat::GradeTooLowException();
+	else if (!this->signedStatus)
+		throw AForm::FormNotSignedException();
+	else
+		this->exec();
 }
 
 const char * AForm::GradeTooHighException::what() const throw()

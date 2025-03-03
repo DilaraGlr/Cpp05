@@ -1,7 +1,7 @@
-CXX			=	clang++
+CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-NAME	=	bureau
+NAME	=	Form
 FILES	=	main.cpp Bureaucrat.cpp Form.cpp
 
 OBJ		=	$(FILES:.cpp=.o)

@@ -25,19 +25,13 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const &
     return *this;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::exec(void) const
 {
-    AForm::execute(executor); // Vérifie si le bureaucrate peut exécuter
-    std::cout << "* drilling noises *" << std::endl;
-
-    // Utilisation d'un compteur statique
-    static int counter = 0;
-    counter++;
-
-    if (counter % 2 == 0) // Alterne entre succès et échec
-        std::cout << target << " has been robotomized successfully" << std::endl;
-    else
-        throw RobotomyFailureException();
+    std::srand(std::time(0));
+	if (std::rand() % 2)
+		std::cout << this->target << " has been robotomized" << std::endl;
+	else
+		std::cout << this->target << " robotomy failed" << std::endl;
 }
 
 const char * RobotomyRequestForm::RobotomyFailureException::what() const throw()

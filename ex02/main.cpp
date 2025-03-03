@@ -17,9 +17,13 @@ int main()
     std::cout << robotomy << std::endl;
     std::cout << pardon << std::endl;
 
+	std::cout << std::endl;
+
     bob.signForm(shrubbery);
     bob.signForm(robotomy);
     bob.signForm(pardon);
+
+	std::cout << std::endl;
 
     bob.executeForm(shrubbery);
     bob.executeForm(robotomy);

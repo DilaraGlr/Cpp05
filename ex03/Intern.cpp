@@ -15,43 +15,41 @@ Intern &Intern::operator=(const Intern &src)
     return *this;
 }
 
-const char *Intern::UnknownFormException::what() const throw()
+AForm *makePresidentialForm(std::string target)
 {
-    return "Error: Unknown form request!";
+	return new PresidentialPardonForm(target);
 }
 
-AForm *Intern::makeForm(std::string formName, std::string target)
+static AForm *makeRobotForm(std::string target)
 {
-    std::string formNames[3] = {
-        "presidential pardon",
-        "robotomy request",
-        "shrubbery creation"
-    };
+	return new RobotomyRequestForm(target);
+}
 
-    AForm *forms[3] = {
-        new PresidentialPardonForm(target),
-        new RobotomyRequestForm(target),
-        new ShrubberyCreationForm(target)
-    };
+static AForm *makeShruberryForm(std::string target)
+{
+	return new ShrubberyCreationForm(target);
+}
 
-    for (int i = 0; i < 3; i++)
-    {
-        if (formNames[i] == formName)
-        {
-            std::cout << "Intern creates " << formName << std::endl;
-            // Supprimer les formulaires inutilisés
-            for (int j = 0; j < 3; j++)
-            {
-                if (j != i)
-                    delete forms[j];
-            }
-            return forms[i];
-        }
-    }
+AForm *Intern::makeForm(std::string name, std::string target)
+{
+	AForm *formToCreate = NULL;
+	AForm *(*allForm[])(std::string) = {&makePresidentialForm, &makeRobotForm, &makeShruberryForm};
+	std::string form[] = {"presidential pardon", "shrubbery creation", "robotomy request"};
+	std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-    // Supprimer tous les formulaires si aucun ne correspond
-    for (int j = 0; j < 3; j++)
-        delete forms[j];
+	for(int i =0; i < 3; i++)
+	{
+		if (!name.compare(form[i]))
+		{
+			formToCreate = allForm[i](target);
+			break;
+		}
+	}
 
-    throw UnknownFormException();
+	if (!formToCreate)
+		std::cout << "Form : "<< name << " doesn't exist" << std::endl;
+	else
+		std::cout << "Intern creates " << formToCreate->getName() << std::endl;
+	
+	return formToCreate;
 }
