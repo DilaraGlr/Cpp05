@@ -3,28 +3,28 @@
 
 #include <iostream>
 #include <string>
-#include <exception> // Nécessaire pour std::exception
+#include <exception> 
 
 class Bureaucrat
 {
     private:
-        std::string const name; // Nom constant
-        int grade;              // Grade du bureaucrate
+        std::string const name;
+        int grade;              
 
     public:
-        // Constructeurs et destructeur
+        
         Bureaucrat(std::string const & name, int grade);
         Bureaucrat(Bureaucrat const & src);
         ~Bureaucrat();
 
-        // Opérateur d'affectation
+        
         Bureaucrat & operator=(Bureaucrat const & src);
 
-        // Getters
+        
         std::string const & getName() const;
         int getGrade() const;
 
-        // Méthodes pour modifier le grade
+        
         void incrementGrade();
         void decrementGrade();
 
